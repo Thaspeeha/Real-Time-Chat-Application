@@ -1,0 +1,29 @@
+{
+  "name": "Chat Application Environment",
+  "dockerFile": "Dockerfile",
+  "forwardPorts": [3000, 8080],
+  "postCreateCommand": "npm install --prefix server && npm install -g live-server",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ritwickdey.LiveServer"
+      ],
+      "settings": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.formatOnSave": true
+      }
+    }
+  },
+  "portsAttributes": {
+    "3000": {
+      "label": "Chat App Client",
+      "onAutoForward": "openPreview"
+    },
+    "8080": {
+      "label": "WebSocket Server",
+      "onAutoForward": "notify"
+    }
+  }
+}
